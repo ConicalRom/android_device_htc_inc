@@ -13,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-$(warning Configs.mk**********************************************)
 #
 PRODUCT_COPY_FILES += \
     device/htc/inc/Generic/vold.fstab:system/etc/vold.fstab \
