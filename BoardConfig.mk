@@ -20,7 +20,7 @@
 # definition file).
 #
 
-#USE_CAMERA_STUB := true
+USE_CAMERA_STUB := true
 #BUILD_OLD_LIBCAMERA:=true
 #BOARD_USES_OLD_CAMERA_HACK:=true
 #BUILD_WITH_FULL_STAGEFRIGHT:=true
