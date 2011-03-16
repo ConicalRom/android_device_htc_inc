@@ -17,7 +17,7 @@
 # edge-cases that can't be managed otherwise. No new rules
 # should be added to this file.
 #
-$(warning **************************************************)
+
 LOCAL_PATH := $(call my-dir)
 
 # Least specific includes go first, so that they can get

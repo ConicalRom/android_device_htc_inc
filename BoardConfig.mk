@@ -19,7 +19,7 @@
 # included in a build is to use PRODUCT_PACKAGES in a product
 # definition file).
 #
-$(warning **********************************************************)
+
 #USE_CAMERA_STUB := true
 #BUILD_OLD_LIBCAMERA:=true
 #BOARD_USES_OLD_CAMERA_HACK:=true
