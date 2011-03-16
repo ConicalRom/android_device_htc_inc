@@ -18,4 +18,4 @@
 #
 $(warning **************************************************)
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/generic_inc.mk
+    $(LOCAL_DIR)/inc.mk
