@@ -13,8 +13,8 @@ on init
     # START from umount/re-mount data
     #
     umount /data
-    devwait /dev/block/mmcblk0p1
-    mount ext3 /dev/block/mmcblk0p1 /data nosuid noatime nodiratime
+	devwait /dev/block/mmcblk0p1
+    mount yaffs2:ext3 sel?mtd@userdata:mmcblk0p1 /data nosuid noatime nodiratime
     exec /system/bin/e2fsck -p /dev/block/mmcblk0p1
     chown system system /data
     chmod 0771 /data
@@ -35,10 +35,6 @@ on init
     copy /proc/apanic_threads /data/dontpanic/apanic_threads
     chown root log /data/dontpanic/apanic_threads
     chmod 0640 /data/dontpanic/apanic_threads
-
-    write /proc/sys/kernel/sched_latency_ns 5000000
-    write /proc/sys/kernel/sched_wakeup_granularity_ns 100000
-    write /proc/sys/kernel/sched_min_granularity_ns 100000
 
 # create basic filesystem structure
     mkdir /data/misc 01771 system misc
@@ -90,23 +86,19 @@ on init
     # START umount/re-mount cache
     #
     umount /cache
-    devwait /dev/block/mmcblk0p2
-    mount ext3 /dev/block/mmcblk0p2 /cache nosuid nodev noatime nodiratime
+	devwait /dev/block/mmcblk0p2
+    mount yaffs2:ext3 sel?mtd@cache:mmcblk0p2 /cache nosuid nodev noatime nodiratime
     chown system cache /cache
-    chmod 0771 /cache
+    chmod 0770 /cache
 
     # This may have been created by the recovery system with odd permissions
-    mkdir system system /cache/recovery
     chown system system /cache/recovery
     chmod 0770 /cache/recovery
     mkdir /cache/lost+found 0770
     chown root root /cache/lost+found
     chmod 0770 /cache/lost+found
-    mkdir /cache/dalvik-cache 0771 system system
-    chown system system /cache/dalvik-cache
-    chmod 0771 /cache/dalvik-cache
     #
-    # END umount/re-mount cache
+    # END umount/re-mount data
     #
 
 # Ramdisk related
@@ -124,11 +116,6 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chmod 0660 /sys/class/rfkill/rfkill0/state
-
-    # bluetooth MAC address programming
-    chown bluetooth bluetooth /sys/module/board_mahimahi/parameters/bdaddress
-    setprop ro.bt.bdaddr_path /sys/module/board_mahimahi/parameters/bdaddress
-
     chown system system /sys/module/serial/parameters/modem_enabled
     chown system system /dev/ttyHSUSB0
     chown system system /dev/ttySA0
@@ -142,12 +129,6 @@ on boot
     # Enable low memory killer to check file pages
     write /sys/module/lowmemorykiller/parameters/minfile 0,0,0,5120,5632,6144
     write /sys/module/lowmemorykiller/parameters/check_filepages 1
-
-    # Power Management
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 245000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 998400
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
-    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 40000
 
 service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
     -Dwext -ieth0 -c/data/misc/wifi/wpa_supplicant.conf
@@ -163,11 +144,10 @@ service dhcpcd /system/bin/dhcpcd -ABKL eth0
     disabled
     oneshot
 
-service hciattach /system/bin/brcm_patchram_plus --enable_hci \
-    --baudrate 3000000 --patchram /etc/firmware/bcm4329.hcd /dev/ttyHS0
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
+#service hciattach /system/bin/brcm_patchram_plus --enable_hci --patchram /etc/firmware/bcm4329.hcd /dev/ttyHS0
+#    user bluetooth
+#    group bluetooth net_bt_admin
+#    disabled
 
 # Make sure we startup btld before hcid
 # Set target address to emulator host loopback IF
