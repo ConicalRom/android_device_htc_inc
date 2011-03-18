@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+
+
+
 #
 # This is the product configuration for a generic CDMA Incredible,
 # not specialized for any geography.
@@ -67,6 +70,9 @@ PRODUCT_PROPERTY_OVERRIDES := \
 # Prelinked AudioFails use fallowing as workaround
 SKIP_PRELINK_LIBAUDIO := true
 
+# Copy the init.inc.rc script
+PRODUCT_COPY_FILES += \
+device/htc/inc/init.inc.rc:./root/init.inc.rc
 
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
@@ -74,5 +80,28 @@ $(call inherit-product, device/htc/common/common.mk)
 $(call inherit-product, build/target/product/full.mk)
 
 
+
+
+
 PRODUCT_NAME := generic_inc
 PRODUCT_DEVICE := inc
+
+
+
+
+PRODUCT_BRAND := htc 
+PRODUCT_MODEL := ADR6300  
+PRODUCT_MANUFACTURER := HTC
+BUILD_ID := FRF91 
+BUILD_DISPLAY_ID := FRG91
+BUILD_NUMBER :=231334
+
+VERSION_TAGS_OVERIDES:=true
+BUILD_DESC_SET_OVERIDE := true
+FINGERPRINT_DEFINED := true
+
+BUILD_VERSION_TAGS := release-keys
+build_desc := 3.21.605.1 CL231334 release-keys
+BUILD_FINGERPRINT := verizon_wwe/inc/inc/inc:2.2/FRF91/231334:user/release-keys
+
+
