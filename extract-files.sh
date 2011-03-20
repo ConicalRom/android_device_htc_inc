@@ -135,10 +135,11 @@ echo ""
 
 # All the blobs necessary for generic incredible in obj/li  
 PRODUCT_COPY_FILES += \\
-  vendor/htc/__DEVICE__/proprietary/libaudio.so:/obj/lib/libaudio.so\\
-  vendor/htc/__DEVICE__/proprietary/libaudiopolicy.so:obj/lib/libaudiopolicy.so\\
-  vendor/htc/__DEVICE__/proprietary/libgps.so:/obj/lib/libgps.so \\
- vendor/htc/__DEVICE__/proprietary/libcamera.so:/obj/lib/libcamera.so
+ vendor/htc/__DEVICE__/proprietary/libaudio.so:/obj/lib/libaudio.so\\
+ vendor/htc/__DEVICE__/proprietary/libaudiopolicy.so:obj/lib/libaudiopolicy.so\\
+ vendor/htc/__DEVICE__/proprietary/libgps.so:/obj/lib/libgps.so \\
+ vendor/htc/__DEVICE__/proprietary/libcamera.so:/obj/lib/libcamera.so \\
+ vendor/htc/__DEVICE__/proprietary/libcamera.so:/obj/lib/liboemcamera.so
 
 # Sensors blobs
 PRODUCT_COPY_FILES += \\

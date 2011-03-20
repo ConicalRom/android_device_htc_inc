@@ -21,9 +21,6 @@
 #
 
 USE_CAMERA_STUB := true
-#BUILD_OLD_LIBCAMERA:=true
-#BOARD_USES_OLD_CAMERA_HACK:=true
-#BUILD_WITH_FULL_STAGEFRIGHT:=true
 
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
